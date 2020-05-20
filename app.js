@@ -105,6 +105,7 @@ var cardsMatched = [];
 var parentElement = document.getElementById('game');
 
 parentElement.addEventListener('click', function handler(){
+    event.preventDefault();
     flippedCards.push(event.target.className);
     if(flippedCards.length > 2){
         flippedCards.shift();
@@ -112,8 +113,6 @@ parentElement.addEventListener('click', function handler(){
     if(flippedCards[0] === flippedCards[1]){
         scoreMemory += 100
         console.log('I am True');
-        removeEventListener('click', handler);
-        console.log('matched');
 
         }else if(scoreMemory === 800){
         console.log('YOU\'VE LEARNED SO MUCH!!');
