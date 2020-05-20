@@ -98,7 +98,40 @@ function renderCardsTable(){
 
 
 }
+var scoreMemory = 0;
+var flippedCards = [1, 2];
+var cardsMatched = [];
 
+var parentElement = document.getElementById('game');
+
+parentElement.addEventListener('click', function handler(){
+    flippedCards.push(event.target.className);
+    if(flippedCards.length > 2){
+        flippedCards.shift();
+    }
+    if(flippedCards[0] === flippedCards[1]){
+        scoreMemory += 100
+        console.log('I am True');
+        parentElement.removeEventListener('click', handler);
+        console.log('FUCKKKK')
+    }else{
+        console.log('I am False');
+    }
+});
+
+
+// function createAMatch(){
+//     var matchMatch = [];
+
+//     for(var r = 0; r < uniqueIndexArray.length; r++){
+//         for(var i = 0; i < definitionArray.length; i++){
+//             var j = definitionArray[i][0];
+//             var matches = document.getElementsByClassName(j);
+//             console.log('fuckthis' + matches);
+//         }
+//     }
+//     matchMatch.push(matches);
+// }
 
 
 
@@ -107,19 +140,17 @@ function randomNumber(min=0, max){
   return Math.floor(Math.random() * (max - min));
 }
 
-definitionToTD();
-individualCards();
+function loadRenderTable(){
+    definitionToTD();
+    individualCards();
 
-/// WIP Test 
-for(let i = 0; i < 16; i++){
-    getRandomIndex();
+    for(let i = 0; i < 16; i++){
+        getRandomIndex();
+    }
+    renderCardsTable();
 }
 
-
-
-var allCards = ['div','div','code','code','js','js','html','html','cf','cf','canvas','canvas','css','css','forLopp','forLoop', 'whileLoop', 'whileLoop', 'Lena', 'Lena'];
-
-
+loadRenderTable();
 
 
 
