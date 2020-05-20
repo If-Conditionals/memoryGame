@@ -112,14 +112,14 @@ parentElement.addEventListener('click', function handler(){
     if(flippedCards[0] === flippedCards[1]){
         scoreMemory += 100
         console.log('I am True');
-        parentElement.removeEventListener('click', function handler(){
-            cardsMatched.push(event.target.className)
-        });
-        console.log('FUCKKKK');
-    }else if(scoreMemory === 800){
-        loadRenderTable();
+        removeEventListener('click', handler);
+        console.log('matched');
+
+        }else if(scoreMemory === 800){
+        console.log('YOU\'VE LEARNED SO MUCH!!');
         scoreMemory = 0;
-        console.log('YOU\'VE LEARNED SO MUCH!!' + loadRenderTable());
+        uniqueIndexArray = [];
+        loadRenderTable();
     }else{
         console.log('I am False');
         
