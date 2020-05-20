@@ -2,6 +2,8 @@
 
 /// Global
 
+var tries = 5;
+
 var uniqueIndexArray = [];
 
 var definitionArray = [
@@ -64,7 +66,7 @@ function individualCards(){
 
 function getRandomIndex(){
     var index = randomNumber(0, finalArray.length);
-console.log('here' + index)
+// console.log('here' + index)
 
 ///------------------------------------------------------ may get endless loop over 16
     while(uniqueIndexArray.includes(finalArray[index])){
@@ -99,29 +101,54 @@ function renderCardsTable(){
 
 }
 var scoreMemory = 0;
-var flippedCards = [1, 2];
+var flippedCards = [];
 var cardsMatched = [];
+var firstCard;
 
 var parentElement = document.getElementById('game');
 
 parentElement.addEventListener('click', function handler(){
     event.preventDefault();
     flippedCards.push(event.target.className);
+    cardsMatched.push(event.target);
     if(flippedCards.length > 2){
         flippedCards.shift();
     }
-    if(flippedCards[0] === flippedCards[1]){
+    
+    if(flippedCards[0] === flippedCards[1] && cardsMatched[0] !== cardsMatched[1]){
         scoreMemory += 100
         console.log('I am True');
+        // firstCard = document.getElementsByClassName(flippedCards[0]);
 
-        }else if(scoreMemory === 800){
+        cardsMatched[0].style.visibility = 'hidden';
+        cardsMatched[1].style.visibility = 'hidden';
+
+        flippedCards = [];
+        cardsMatched = [];
+        
+    }else if(scoreMemory === 800){
         console.log('YOU\'VE LEARNED SO MUCH!!');
         scoreMemory = 0;
         uniqueIndexArray = [];
         loadRenderTable();
     }else{
+        if(cardsMatched[0].id !== 'game' && cardsMatched[1].id !== 'game'){
+            tries--;
+        }
+
+        flippedCards = [];
+        cardsMatched = [];
+
+        console.log('here: ' + tries);
         console.log('I am False');
         
+    }
+
+    if(tries === 0){
+        // Game Over
+
+        // -------- Stretch Goal --------------------
+        // Show Easy mod button
     }
 });
 
