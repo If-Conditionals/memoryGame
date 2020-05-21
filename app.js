@@ -2,7 +2,7 @@
 
 /// Global
 
-var tries = 5;
+var tries = 4;
 
 var uniqueIndexArray = [];
 
@@ -12,9 +12,9 @@ var definitionArray = [
     ['GitHub', 'GitHub is a web-based version-control and collaboration platform for software developers'],
     ['DOM', 'Document Object Model'],
     ['Repo', 'A directory or storage space where your projects can live'],
-    ['CSS selectors', 'CSS selectors are used to "find" (or select) the HTML elements you want to style'],
-    ['HTML Form', 'An HTML form is used to collect user input'],
-    ['HTML tag', 'The <html> tag is the container for all other HTML elements']
+    ['CSS-selectors', 'CSS selectors are used to "find" (or select) the HTML elements you want to style'],
+    ['HTML-Form', 'An HTML form is used to collect user input'],
+    ['HTML-tag', 'The <html> tag is the container for all other HTML elements']
     // ['HTML button', 'The <button> tag defines a clickable button'],
     // ['JS function', 'JavaScript functions are defined with the function keyword'],
     // ['JS object', 'An object is a collection of properties, and a property is an association between a name (or key) and value'],
@@ -29,6 +29,8 @@ var definitionArray = [
     // ['test5', 'deff5']
 
 ]
+
+var backgroundColor = ['blue', 'red', 'green', 'gray', 'yellow', 'pink', 'orange', 'purple']
 
 var tdArray = [];
 // var parentElement = 
@@ -128,9 +130,24 @@ parentElement.addEventListener('click', function handler(){
         
     }else if(scoreMemory === 800){
         console.log('YOU\'VE LEARNED SO MUCH!!');
+        alert(`You scored ${scoreMemory}`);
         scoreMemory = 0;
         uniqueIndexArray = [];
-        loadRenderTable();
+        parentElement.removeEventListener('click', handler);
+
+    }else if(tries === 0){
+        console.log('Shoot!');
+        alert(`You scored ${scoreMemory}`);
+        scoreMemory = 0;
+        uniqueIndexArray = [];
+        for(var i = 0; i < definitionArray.length; i++){
+            document.getElementsByClassName(definitionArray[i][0])[0].style.backgroundColor = backgroundColor[i];
+            document.getElementsByClassName(definitionArray[i][0])[1].style.backgroundColor = backgroundColor[i];
+
+        }
+        // console.log(document.getElementsByClassName('DOM'))
+        parentElement.removeEventListener('click', handler);
+
     }else{
         if(cardsMatched[0].id !== 'game' && cardsMatched[1].id !== 'game'){
             tries--;
@@ -144,12 +161,8 @@ parentElement.addEventListener('click', function handler(){
         
     }
 
-    if(tries === 0){
-        // Game Over
+        document.getElementById('score').textContent = `Score: ${scoreMemory}, You have ${tries} left.`
 
-        // -------- Stretch Goal --------------------
-        // Show Easy mod button
-    }
 });
 
 
