@@ -32,6 +32,14 @@ var definitionArray = [
 
 var backgroundColor = ['blue', 'red', 'green', 'gray', 'yellow', 'pink', 'orange', 'purple']
 
+document.getElementById('startGame').addEventListener('submit', function handler(event){
+    event.preventDefault();
+    console.log('Is this working?');
+    loadRenderTable();
+    document.getElementById('startGame').style.visibility = 'hidden';
+  });
+
+
 var tdArray = [];
 // var parentElement = 
 
